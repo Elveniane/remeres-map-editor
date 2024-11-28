@@ -1140,6 +1140,11 @@ void MapDrawer::BlitItem(int &draw_x, int &draw_y, const Tile* tile, const Item*
 		glBlitSquare(draw_x, draw_y, red, green, 0, alpha / 3 * 2);
 		glEnable(GL_TEXTURE_2D);
 		return;
+	} else if (type.id == ITEM_NOTHING_SPECIAL_BLOCKING && !options.ingame) {
+		glDisable(GL_TEXTURE_2D);
+		glBlitSquare(draw_x, draw_y, 0, green, blue, 80);
+		glEnable(GL_TEXTURE_2D);
+		return;
 	} else if (type.id == ITEM_NOTHING_SPECIAL && !options.ingame) {
 		glDisable(GL_TEXTURE_2D);
 		glBlitSquare(draw_x, draw_y, red, 0, 0, alpha / 3 * 2);
