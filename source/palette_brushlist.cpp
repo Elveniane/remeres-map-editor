@@ -645,7 +645,7 @@ Brush* BrushIconBox::GetSelectedBrush() const {
 bool BrushIconBox::SelectPaginatedBrush(const Brush* whatBrush, BrushPalettePanel* brushPalettePanel) {
 	const auto index = std::ranges::find(tileset->brushlist.begin(), tileset->brushlist.end(), whatBrush) - tileset->brushlist.begin();
 
-	if (index < tileset->brushlist.size()) {
+	if (static_cast<size_t>(index) < tileset->brushlist.size()) {
 		const auto page = std::ceil(index / (width * height)) + 1;
 		if (currentPage != page) {
 			brushPalettePanel->OnPageUpdate(this, page);
